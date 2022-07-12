@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/layui/css/layui.css" media="all">
+    <script src="/static/layui/layui.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<h1>添加居民信息</h1>
+<br>
+<form class="layui-form" id="form_show_json" action="">
+  <div class="layui-form-item">
+    <label class="layui-form-label">姓名</label>
+    <div class="layui-input-block">
+      <input type="text" name="s_name" required  lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">性别</label>
+    <div class="layui-input-block">
+      <input type="radio" name="s_sex" value="男" title="男">
+      <input type="radio" name="s_sex" value="女" title="女" checked>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">联系方式</label>
+    <div class="layui-input-block">
+      <input type="text" name="s_phone" required  lay-verify="required" placeholder="请输入联系方式" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">住址</label>
+    <div class="layui-input-block">
+      <input type="text" name="s_address" required  lay-verify="required" placeholder="请输入住址" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">其他</label>
+    <div class="layui-input-block">
+      <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+    </div>
+  </div>
+  <div class="layui-form-item ">
+    <div class="layui-input-block">
+	  <input type="file" name="FileUpload" id="FileUpload" class=".layui-form-label ">
+	  <a class="layui-btn layui-btn-mini" id="btn_uploadimg"><i class="layui-icon">&#xe67c;</i>上传图片</a>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>
+<script>
+//Demo
+$(function () {
+        $("#btn_uploadimg").click(function () {
+            var fileObj = document.getElementById("FileUpload").files[0]; // js 获取文件对象
+            if (typeof (fileObj) == "undefined" || fileObj.size <= 0) {
+                alert("请选择图片");
+                return;
+            }
+            var formFile = new FormData();
+            formFile.append("action", "UploadVMKImagePath");
+            formFile.append("file", fileObj); //加入文件对象
+
+            //ajax 提交
+
+            var form_data = formFile;
+            console.log(form_data);
+            console.log(form_data.append.name);
+            $.ajax({
+                url: "/user/upload",
+                data: form_data,
+                type: "post",
+                dataType: "json",
+                cache: false,//上传文件无需缓存
+                processData: false,//用于对data参数进行序列化处理 这里必须false
+                contentType: false, //必须
+                success: function (result) {
+                    alert("上传完成!");
+
+                },
+            })
+        })
+    })
+
+layui.use('form', function(){
+  var form = layui.form;
+
+  //监听提交
+  form.on('submit(formDemo)', function(data){
+  $.ajax({
+        type: 'POST',
+        url: "/user/addstu/",
+        dataType: "json",
+        data: $('#form_show_json').serialize(),// 获取表单提交的数据
+        success: function (data) {
+          console.log(data)
+          console.log("hello")
+          alert("添加完成!");
+          console.log(form_data)
+        }
+    });
+
+<!--    layer.msg(JSON.stringify(data.field));-->
+        alert("添加完成!");
+    return false;
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>登录</title>
+<link rel="stylesheet" type="text/css" href="/static/css/public.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/page.css" />
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/public.js"></script>
+</head>
+<body>
+
+	<form action="" method="post">
+	<!-- 登录body -->
+
+	<div class="logDiv">
+		<img class="logBanner" src="/static/img/logBanner2.png" />
+
+		<div class="logGet">
+			<!-- 头部提示信息 -->
+			<div class="logD logDtip">
+				<p class="p1">登录</p>
+				<span style="color: red">{{msg}}</span>
+			</div>
+			<!-- 输入框 -->
+			<div class="lgD">
+				<img class="img1" src="/static/img/logName.png" />
+				<input type="text" placeholder="输入用户名" name="username" />
+			</div>
+			<div class="lgD">
+				<img class="img1" src="/static/img/logPwd.png" />
+				<input type="password" placeholder="输入用户密码" name="password"/>
+			</div>
+			<div class="logC">
+
+					<button style="margin: 3px">
+						<input type="submit" value="登 &nbsp;&nbsp;陆" style="background: none;border: none;color: white;">
+					</button>
+			</div>
+			<div class="logC" >
+
+					<a href="/user/register" style="width: 100%;
+    height: 45px;
+    background-color: #ee7700;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-family: 'Microsoft YaHei';
+    appearance: auto;
+    text-align: center;
+    margin: 3px,0px;
+}">
+						<input  value="注 &nbsp;&nbsp;册" style="background: none;border: none;color: white;width:40.4px;text-align: center;margin:10px;    align-items: flex-start;"></a>
+
+			</div>
+
+		</div>
+	</div>
+	</form>
+	<!-- 登录body  end -->
+
+	<!-- 登录页面底部 -->
+	<div class="logFoot">
+		<p class="p1">2022</p>
+	</div>
+	<!-- 登录页面底部end -->
+   
+</body>
+</html>
